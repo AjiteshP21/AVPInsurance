@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVP Insurance – Aniket Vitthal Pawar</title>
+<meta name="description" content="All types of vehicle insurance by Aniket Vitthal Pawar, Mumbai. Fast, trusted, personal service.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060604'/%3E%3Cpolygon points='16,2 29,8 29,22 16,30 3,22 3,8' fill='%230c0c08' stroke='%23C9A84C' stroke-width='1.2'/%3E%3Cpolygon points='16,8 11,19 21,19' fill='none' stroke='%23C9A84C' stroke-width='1.1'/%3E%3Cline x1='11.5' y1='19' x2='20.5' y2='19' stroke='%23C9A84C' stroke-width='1.1'/%3E%3Ctext x='16' y='27' font-family='serif' font-size='5.5' fill='%23C9A84C' text-anchor='middle' font-weight='700'%3EAVP%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --g:#C9A84C;--gl:#F0D080;--gd:#8B6914;
+  --bg:#060604;--s1:#0c0c08;--s2:#121210;--s3:#1a1a14;
+  --tx:#f0ece0;--m1:#7a7060;--m2:#a09878;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--tx);font-family:'Inter',sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gd);}
+
+/* CURSOR */
+.cursor{position:fixed;width:8px;height:8px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s;}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(201,168,76,0.4);border-radius:50%;pointer-events:none;z-index:9998;transition:transform 0.15s,width 0.2s,height 0.2s,opacity 0.2s;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 5%;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;}
+nav.solid{background:rgba(6,6,4,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.1);padding:14px 5%;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo svg{width:32px;height:32px;}
+.logo-t{display:flex;flex-direction:column;line-height:1.1;}
+.logo-t b{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:var(--g);letter-spacing:1px;}
+.logo-t span{font-size:8px;color:var(--m1);letter-spacing:3px;text-transform:uppercase;}
+.nav-r{display:flex;align-items:center;gap:28px;}
+.nav-r a{color:var(--m2);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.5px;transition:color 0.2s;}
+.nav-r a:hover{color:var(--g);}
+.nav-btn{background:var(--g);color:#000;padding:10px 22px;border-radius:2px;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;border:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.nav-btn:hover{background:var(--gl);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden;}
+.hero-noise{position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orb 8s ease-in-out infinite alternate;}
+.orb1{width:600px;height:600px;background:rgba(201,168,76,0.06);top:-100px;right:-100px;}
+.orb2{width:400px;height:400px;background:rgba(201,168,76,0.04);bottom:-50px;left:10%;animation-delay:-4s;}
+@keyframes orb{0%{transform:scale(1) translate(0,0);}100%{transform:scale(1.1) translate(20px,-20px);}}
+
+.hero-inner{position:relative;z-index:1;width:100%;max-width:1100px;padding:120px 0 80px;}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s 0.2s forwards;}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;};}
+.hero-tag span{font-size:11px;color:var(--g);letter-spacing:3px;text-transform:uppercase;font-weight:500;}
+
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(60px,9vw,120px);font-weight:800;line-height:0.9;letter-spacing:-2px;margin-bottom:32px;opacity:0;animation:fadeUp 0.8s 0.4s forwards;}
+.hero h1 .line{display:block;overflow:hidden;}
+.hero h1 .gold{color:var(--g);}
+.hero h1 .outline{-webkit-text-stroke:1px rgba(240,236,224,0.3);color:transparent;}
+
+.hero-sub{font-size:16px;color:var(--m2);line-height:1.8;max-width:500px;margin-bottom:44px;font-weight:300;opacity:0;animation:fadeUp 0.8s 0.6s forwards;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.8s forwards;}
+.btn-main{display:inline-flex;align-items:center;gap:12px;background:var(--g);color:#000;padding:16px 32px;border-radius:2px;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:all 0.2s;position:relative;overflow:hidden;}
+.btn-main::before{content:'';position:absolute;inset:0;background:var(--gl);transform:translateX(-100%);transition:transform 0.3s;}
+.btn-main:hover::before{transform:translateX(0);}
+.btn-main span{position:relative;z-index:1;}
+.btn-ghost{display:inline-flex;align-items:center;gap:12px;color:var(--tx);padding:16px 32px;border-radius:2px;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:0.5px;border:1px solid rgba(240,236,224,0.15);transition:all 0.2s;}
+.btn-ghost:hover{border-color:var(--g);color:var(--g);}
+
+.hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:48px;border-top:1px solid rgba(201,168,76,0.1);opacity:0;animation:fadeUp 0.8s 1s forwards;}
+.hs-item{}
+.hs-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--g);line-height:1;}
+.hs-label{font-size:11px;color:var(--m1);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+
+/* SCROLLING TICKER */
+.ticker{background:var(--s1);border-top:1px solid rgba(201,168,76,0.1);border-bottom:1px solid rgba(201,168,76,0.1);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.ticker-inner{display:inline-flex;animation:ticker 20s linear infinite;}
+.ticker-item{display:inline-flex;align-items:center;gap:12px;padding:0 32px;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--m1);}
+.ticker-item .dot{color:var(--g);font-size:16px;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* SERVICES */
+.services{padding:120px 5%;}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:72px;}
+.sec-label{font-size:10px;color:var(--g);letter-spacing:4px;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--g);}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(40px,5vw,64px);font-weight:800;line-height:0.95;letter-spacing:-1px;}
+.sec-desc{font-size:15px;color:var(--m2);line-height:1.8;font-weight:300;}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.08);}
+.svc-card{background:var(--s1);padding:44px 32px;position:relative;overflow:hidden;transition:background 0.3s;cursor:default;}
+.svc-card:hover{background:var(--s2);}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,0.04),transparent);opacity:0;transition:opacity 0.3s;}
+.svc-card:hover::before{opacity:1;}
+.svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gd),var(--g),var(--gl));transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+.svc-card:hover::after{transform:scaleX(1);}
+.svc-num{font-family:'Syne',sans-serif;font-size:11px;color:rgba(201,168,76,0.25);letter-spacing:3px;font-weight:700;margin-bottom:28px;}
+.svc-ico{font-size:36px;margin-bottom:20px;display:block;transition:transform 0.3s;}
+.svc-card:hover .svc-ico{transform:scale(1.1);}
+.svc-card h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.3px;}
+.svc-card p{font-size:13px;color:var(--m2);line-height:1.7;font-weight:300;}
+
+/* MARQUEE FINE BAR */
+.fine-strip{background:var(--s1);padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid rgba(224,90,90,0.15);border-bottom:1px solid rgba(224,90,90,0.15);flex-wrap:wrap;}
+.fine-badge{background:rgba(224,90,90,0.08);border:1px solid rgba(224,90,90,0.2);color:#e05a5a;padding:5px 16px;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.fine-text{font-size:14px;color:var(--m2);}
+.fine-text strong{color:var(--tx);}
+.fine-link{color:var(--g);font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.3);transition:border-color 0.2s;white-space:nowrap;}
+.fine-link:hover{border-color:var(--g);}
+
+/* HOW IT WORKS */
+.how{padding:120px 5%;background:var(--s1);}
+.how-layout{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center;}
+.how-steps{margin-top:48px;}
+.how-step{display:flex;gap:28px;padding:28px 0;border-bottom:1px solid rgba(201,168,76,0.06);position:relative;transition:padding-left 0.3s;cursor:default;}
+.how-step:hover{padding-left:8px;}
+.how-step:last-child{border-bottom:none;}
+.step-num{font-family:'Syne',sans-serif;font-size:11px;color:rgba(201,168,76,0.3);letter-spacing:3px;font-weight:800;min-width:32px;padding-top:3px;transition:color 0.3s;}
+.how-step:hover .step-num{color:var(--g);}
+.step-body h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:6px;letter-spacing:-0.2px;}
+.step-body p{font-size:13px;color:var(--m2);line-height:1.7;font-weight:300;}
+
+.how-visual{position:relative;}
+.how-card{background:var(--s2);border:1px solid rgba(201,168,76,0.1);border-radius:4px;padding:48px;text-align:center;position:relative;overflow:hidden;}
+.how-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);}
+.how-card-glow{position:absolute;width:200px;height:200px;background:rgba(201,168,76,0.04);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);filter:blur(40px);}
+.how-card-badge{display:inline-block;border:1px solid rgba(201,168,76,0.3);color:var(--g);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:6px 20px;border-radius:2px;margin-bottom:28px;}
+.how-card h3{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:14px;letter-spacing:-0.5px;}
+.how-card p{font-size:14px;color:var(--m2);line-height:1.8;margin-bottom:28px;font-weight:300;}
+
+/* PENALTIES */
+.penalties{padding:120px 5%;}
+.pen-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.pen-list{margin-top:44px;display:flex;flex-direction:column;gap:1px;background:rgba(201,168,76,0.06);}
+.pen-row{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;background:var(--bg);transition:background 0.2s,padding-left 0.2s;}
+.pen-row:hover{background:var(--s1);padding-left:30px;}
+.pen-row.hl{background:var(--s1);}
+.pn{font-size:13px;font-weight:500;color:var(--m2);}
+.pf{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#e05a5a;}
+.pf.gold{color:var(--g);}
+.pen-insights{display:flex;flex-direction:column;gap:16px;margin-top:44px;}
+.pi{padding:28px 30px;border-left:2px solid var(--g);background:var(--s1);}
+.pi h3{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--g);margin-bottom:6px;}
+.pi p{font-size:13px;color:var(--m2);line-height:1.7;font-weight:300;}
+.pi.accent{border-color:rgba(201,168,76,0.3);}
+.pi.accent h3{font-size:20px;color:var(--gl);}
+
+/* CONTACT */
+.contact{padding:120px 5%;background:var(--s1);}
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-details{margin-top:44px;display:flex;flex-direction:column;gap:12px;}
+.cd{display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--s2);border:1px solid rgba(201,168,76,0.06);text-decoration:none;color:var(--tx);transition:all 0.2s;position:relative;overflow:hidden;}
+.cd::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--g);transform:scaleY(0);transition:transform 0.3s;}
+.cd:hover{border-color:rgba(201,168,76,0.2);background:var(--s3);}
+.cd:hover::before{transform:scaleY(1);}
+.cd-icon{width:42px;height:42px;background:rgba(201,168,76,0.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.cd-label{font-size:9px;color:var(--m1);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;}
+.cd-val{font-size:15px;font-weight:500;}
+
+/* FORM */
+.form-wrap{background:var(--s2);border:1px solid rgba(201,168,76,0.1);overflow:hidden;}
+.form-top{padding:28px 36px;border-bottom:1px solid rgba(201,168,76,0.08);position:relative;}
+.form-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),transparent);}
+.form-top h3{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-0.3px;}
+.form-top p{font-size:12px;color:var(--m1);margin-top:4px;}
+.form-body{padding:32px 36px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:9px;color:var(--m1);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;font-weight:600;}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--s3);border:1px solid rgba(240,236,224,0.06);padding:13px 16px;color:var(--tx);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none;border-radius:0;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g);}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--m1);font-weight:300;}
+.fg select option{background:var(--s3);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fsub{width:100%;background:var(--g);color:#000;border:none;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:4px;}
+.fsub:hover{background:var(--gl);}
+.fsub:disabled{opacity:0.5;cursor:not-allowed;}
+.fnote{font-size:11px;color:var(--m1);text-align:center;margin-top:12px;}
+#form-success{display:none;text-align:center;padding:56px 24px;}
+#form-success .si{font-size:48px;margin-bottom:16px;}
+#form-success h3{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--g);margin-bottom:10px;}
+#form-success p{font-size:14px;color:var(--m2);line-height:1.8;font-weight:300;}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid rgba(201,168,76,0.08);padding:56px 5%;}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:44px;}
+.fb-name{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--g);letter-spacing:1px;margin-bottom:4px;}
+.fb-sub{font-size:9px;color:var(--m1);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;}
+.fb-desc{font-size:13px;color:var(--m1);line-height:1.8;font-weight:300;}
+.fc h4{font-size:9px;color:var(--m1);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;font-weight:700;}
+.fc a{display:block;font-size:13px;color:var(--m2);text-decoration:none;margin-bottom:10px;transition:color 0.2s;font-weight:300;}
+.fc a:hover{color:var(--g);}
+.footer-btm{border-top:1px solid rgba(201,168,76,0.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-btm p{font-size:11px;color:var(--m1);}
+
+/* WA */
+.wa{position:fixed;bottom:28px;right:28px;z-index:998;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform 0.2s;box-shadow:0 0 0 0 rgba(37,211,102,0.3);animation:wap 2.5s infinite;}
+.wa:hover{transform:scale(1.12);animation:none;}
+@keyframes wap{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.3);}70%{box-shadow:0 0 0 16px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s,transform 0.7s;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+.reveal-d4{transition-delay:0.4s;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:900px){
+  .sec-head,.how-layout,.pen-layout,.contact-layout,.footer-inner{grid-template-columns:1fr;}
+  .svc-grid{grid-template-columns:1fr 1fr;}
+  .frow{grid-template-columns:1fr;}
+  .hero-stats{flex-wrap:wrap;gap:24px;}
+  nav .nav-r a{display:none;}
+  .hero h1{font-size:clamp(44px,12vw,80px);}
+}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="16,2 30,9 30,23 16,30 2,23 2,9" stroke="#C9A84C" stroke-width="1.2" fill="#0c0c08"/>
+      <polygon points="16,8 11,20 21,20" stroke="#C9A84C" stroke-width="1" fill="none"/>
+      <line x1="12" y1="20" x2="20" y2="20" stroke="#C9A84C" stroke-width="1"/>
+      <text x="16" y="27" font-family="serif" font-size="5.5" fill="#C9A84C" text-anchor="middle" font-weight="700">AVP</text>
+    </svg>
+    <div class="logo-t"><b>AVP Insurance</b><span>Aniket Vitthal Pawar</span></div>
+  </a>
+  <div class="nav-r">
+    <a href="#services">Services</a>
+    <a href="#how">Process</a>
+    <a href="#penalties">Law</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/918369143906?text=Hi%20Aniket%2C%20I%20need%20vehicle%20insurance" class="nav-btn" target="_blank">Get Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-noise"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <span>Mumbai · All Vehicle Types · Personal Service</span>
+    </div>
+    <h1>
+      <span class="line">VEHICLE</span>
+      <span class="line gold">INSURANCE</span>
+      <span class="line outline">DONE RIGHT.</span>
+    </h1>
+    <p class="hero-sub">Fast, trusted coverage for cars, bikes & commercial vehicles. Handled personally by Aniket Vitthal Pawar — not a call center.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/918369143906?text=Hi%20Aniket%2C%20I%20need%20vehicle%20insurance" class="btn-main" target="_blank"><span>📱 WhatsApp Now</span></a>
+      <a href="#contact" class="btn-ghost">Request Callback →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item"><div class="hs-num">500+</div><div class="hs-label">Clients Covered</div></div>
+      <div class="hs-item"><div class="hs-num">10+</div><div class="hs-label">Years Active</div></div>
+      <div class="hs-item"><div class="hs-num">4</div><div class="hs-label">Vehicle Types</div></div>
+      <div class="hs-item"><div class="hs-num">24h</div><div class="hs-label">Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="dot">✦</span> Two-Wheeler Insurance</span>
+    <span class="ticker-item"><span class="dot">✦</span> Private Car Insurance</span>
+    <span class="ticker-item"><span class="dot">✦</span> Commercial Vehicles</span>
+    <span class="ticker-item"><span class="dot">✦</span> Policy Renewal</span>
+    <span class="ticker-item"><span class="dot">✦</span> Fast Claims Support</span>
+    <span class="ticker-item"><span class="dot">✦</span> Best Coverage Options</span>
+    <span class="ticker-item"><span class="dot">✦</span> Mumbai Based</span>
+    <span class="ticker-item"><span class="dot">✦</span> Personal Service</span>
+    <span class="ticker-item"><span class="dot">✦</span> Two-Wheeler Insurance</span>
+    <span class="ticker-item"><span class="dot">✦</span> Private Car Insurance</span>
+    <span class="ticker-item"><span class="dot">✦</span> Commercial Vehicles</span>
+    <span class="ticker-item"><span class="dot">✦</span> Policy Renewal</span>
+    <span class="ticker-item"><span class="dot">✦</span> Fast Claims Support</span>
+    <span class="ticker-item"><span class="dot">✦</span> Best Coverage Options</span>
+    <span class="ticker-item"><span class="dot">✦</span> Mumbai Based</span>
+    <span class="ticker-item"><span class="dot">✦</span> Personal Service</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-label">What We Cover</div>
+      <h2 class="sec-title">All Vehicle<br>Types</h2>
+    </div>
+    <p class="sec-desc">From your daily commute bike to a commercial fleet — one call and Aniket gets you the best plan at the best price.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal reveal-d1">
+      <div class="svc-num">01</div>
+      <span class="svc-ico">🏍️</span>
+      <h3>Two-Wheeler</h3>
+      <p>Bikes, scooters, motorcycles. Comprehensive and third-party options. Covers theft, own damage, floods and fire.</p>
+    </div>
+    <div class="svc-card reveal reveal-d2">
+      <div class="svc-num">02</div>
+      <span class="svc-ico">🚗</span>
+      <h3>Private Car</h3>
+      <p>Full coverage for personal cars. Zero depreciation, engine protection, roadside assistance add-ons available.</p>
+    </div>
+    <div class="svc-card reveal reveal-d3">
+      <div class="svc-num">03</div>
+      <span class="svc-ico">🚛</span>
+      <h3>Commercial Vehicle</h3>
+      <p>Trucks, tempos, taxis, goods carriers. Policies built for high mileage and business-grade protection.</p>
+    </div>
+    <div class="svc-card reveal reveal-d4">
+      <div class="svc-num">04</div>
+      <span class="svc-ico">🔄</span>
+      <h3>Policy Renewal</h3>
+      <p>Expired policy? Fast renewal with zero lapse in coverage. No inspection hassles for most vehicle types.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINE STRIP -->
+<div class="fine-strip">
+  <div class="fine-badge">⚠ Law Alert 2026</div>
+  <p class="fine-text">Driving without insurance = <strong>₹5,000 fine</strong>. Insurance starts at just <strong>₹800/year.</strong></p>
+  <a href="#contact" class="fine-link">Get insured in 10 minutes →</a>
+</div>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="how-layout">
+    <div class="reveal">
+      <div class="sec-label">Simple Process</div>
+      <h2 class="sec-title">4 Steps.<br>Done.</h2>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-body"><h3>Contact Aniket</h3><p>Call or WhatsApp your vehicle details. Takes 2 minutes. No paperwork to start.</p></div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-body"><h3>Get the Best Quote</h3><p>We compare across top insurers and find the best plan for your exact vehicle and budget.</p></div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-body"><h3>Pay &amp; Get Covered</h3><p>Online or offline payment. Policy issued instantly. No branch visit needed.</p></div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">04</div>
+          <div class="step-body"><h3>Claims Support Always</h3><p>Anything happens — call Aniket. Guided from filing to final settlement.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-d2">
+      <div class="how-card">
+        <div class="how-card-glow"></div>
+        <div class="how-card-badge">Why Choose Us</div>
+        <h3>You talk to Aniket.<br>Not a bot.</h3>
+        <p>Personal attention on every inquiry. Aniket Vitthal Pawar personally ensures you get the right policy — fast, clear, no confusion.</p>
+        <a href="https://wa.me/918369143906?text=Hi%20Aniket%2C%20I%20need%20vehicle%20insurance" class="btn-main" target="_blank" style="display:inline-flex;margin-bottom:16px;"><span>📱 Chat on WhatsApp</span></a>
+        <div style="font-size:11px;color:var(--m1);margin-top:8px;">+91 83691 43906</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PENALTIES -->
+<section class="penalties" id="penalties">
+  <div class="pen-layout">
+    <div class="reveal">
+      <div class="sec-label">Know the Law</div>
+      <h2 class="sec-title">Traffic Fines<br>2026</h2>
+      <p class="sec-desc" style="margin-bottom:0;">Motor Vehicles Act 2026. One fine costs more than an entire year of insurance.</p>
+      <div class="pen-list">
+        <div class="pen-row hl"><span class="pn">🚗 &nbsp;No Insurance</span><span class="pf gold">₹5,000</span></div>
+        <div class="pen-row"><span class="pn">📄 &nbsp;No Registration</span><span class="pf">₹10,000</span></div>
+        <div class="pen-row"><span class="pn">🪪 &nbsp;No Licence</span><span class="pf">₹10,000</span></div>
+        <div class="pen-row"><span class="pn">🔧 &nbsp;No Fitness Certificate</span><span class="pf">₹10,000</span></div>
+        <div class="pen-row"><span class="pn">💨 &nbsp;No Pollution Certificate</span><span class="pf">₹20,000</span></div>
+        <div class="pen-row"><span class="pn">🍺 &nbsp;Drunk Driving</span><span class="pf">₹20,000</span></div>
+        <div class="pen-row"><span class="pn">🏃 &nbsp;Hit &amp; Run</span><span class="pf">₹50,000</span></div>
+      </div>
+    </div>
+    <div class="pen-insights reveal reveal-d2">
+      <div class="pi"><h3>₹800/yr</h3><p>Bike insurance from ₹800 per year. That's less than one fine — and you're covered all 365 days.</p></div>
+      <div class="pi"><h3>10 Min</h3><p>Average time to get your policy after contacting Aniket. Most people spend longer choosing lunch.</p></div>
+      <div class="pi accent"><h3>Don't risk it.</h3><p>One stop without insurance = ₹5,000 minimum. One accident = everything at risk.</p></div>
+      <a href="#contact" class="btn-main" style="display:inline-flex;margin-top:4px;"><span>Get Insured Today →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-layout">
+    <div class="reveal">
+      <div class="sec-label">Get in Touch</div>
+      <h2 class="sec-title">Talk to<br>Aniket.</h2>
+      <p class="sec-desc">Direct. Personal. Fast. WhatsApp is the quickest way to get your quote.</p>
+      <div class="contact-details">
+        <a href="https://wa.me/918369143906?text=Hi%20Aniket%2C%20I%20need%20vehicle%20insurance" class="cd" target="_blank">
+          <div class="cd-icon">📱</div><div><div class="cd-label">WhatsApp — Fastest</div><div class="cd-val">+91 83691 43906</div></div>
+        </a>
+        <a href="tel:+918369143906" class="cd">
+          <div class="cd-icon">📞</div><div><div class="cd-label">Phone Call</div><div class="cd-val">+91 83691 43906</div></div>
+        </a>
+        <a href="mailto:vehicalinsurance0@gmail.com" class="cd">
+          <div class="cd-icon">✉️</div><div><div class="cd-label">Email</div><div class="cd-val">vehicalinsurance0@gmail.com</div></div>
+        </a>
+        <div class="cd" style="cursor:default;">
+          <div class="cd-icon">📍</div><div><div class="cd-label">Location</div><div class="cd-val">Mumbai, Maharashtra</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-d2">
+      <div class="form-wrap">
+        <div class="form-top">
+          <h3>Request a Callback</h3>
+          <p>Aniket will call you back personally.</p>
+        </div>
+        <div class="form-body">
+          <div id="form-fields">
+            <form id="inquiry-form">
+              <div class="fg"><label>Full Name</label><input type="text" name="from_name" placeholder="Rahul Sharma" required></div>
+              <div class="frow">
+                <div class="fg"><label>Phone Number</label><input type="tel" name="phone" placeholder="98765 43210" required></div>
+                <div class="fg"><label>Email Address</label><input type="email" name="email" placeholder="rahul@gmail.com" required></div>
+              </div>
+              <div class="frow">
+                <div class="fg"><label>City</label><input type="text" name="city" placeholder="Mumbai" required></div>
+                <div class="fg"><label>Vehicle Type</label>
+                  <select name="vehicle_type" required>
+                    <option value="">Select type</option>
+                    <option>Two-Wheeler (Bike / Scooter)</option>
+                    <option>Private Car</option>
+                    <option>Commercial Vehicle</option>
+                    <option>Policy Renewal</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="fg"><label>Vehicle Number (Optional)</label><input type="text" name="vehicle_number" placeholder="MH 04 AB 1234"></div>
+              <div class="fg"><label>Message (Optional)</label><textarea name="message" placeholder="Vehicle model, year, any questions..."></textarea></div>
+              <button type="submit" class="fsub" id="submit-btn">Send Request</button>
+              <p class="fnote">Or WhatsApp directly · +91 83691 43906</p>
+            </form>
+          </div>
+          <div id="form-success">
+            <div class="si">✅</div>
+            <h3>Request Received!</h3>
+            <p>Aniket will call you back shortly.<br><br>For instant response:<br><strong style="color:var(--g);">+91 83691 43906</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="fb-name">AVP INSURANCE</div>
+      <div class="fb-sub">Aniket Vitthal Pawar · Mumbai</div>
+      <p class="fb-desc">Trusted vehicle insurance services. Personal attention, fast claims, best coverage for every vehicle type on the road.</p>
+    </div>
+    <div class="fc">
+      <h4>Services</h4>
+      <a href="#services">Two-Wheeler Insurance</a>
+      <a href="#services">Private Car Insurance</a>
+      <a href="#services">Commercial Vehicles</a>
+      <a href="#services">Policy Renewal</a>
+    </div>
+    <div class="fc">
+      <h4>Contact</h4>
+      <a href="tel:+918369143906">+91 83691 43906</a>
+      <a href="mailto:vehicalinsurance0@gmail.com">vehicalinsurance0@gmail.com</a>
+      <a href="https://wa.me/918369143906" target="_blank">WhatsApp Now</a>
+      <a href="#contact">Request Callback</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 AVP Insurance · Aniket Vitthal Pawar · Mumbai, Maharashtra</p>
+    <p>With ❤️ from Aniket &amp; Arti Pawar</p>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/918369143906?text=Hi%20Aniket%2C%20I%20need%20vehicle%20insurance" class="wa" target="_blank" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init('rFVi6Cgqi0Rwxw094');
+
+// Nav scroll
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('solid',window.scrollY>60);
+});
+
+// Custom cursor
+var cur=document.getElementById('cur'),ring=document.getElementById('ring');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=(mx-4)+'px';cur.style.top=(my-4)+'px';
+});
+(function raf(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=(rx-16)+'px';ring.style.top=(ry-16)+'px';
+  requestAnimationFrame(raf);
+})();
+document.querySelectorAll('a,button').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ring.style.width='48px';ring.style.height='48px';ring.style.opacity='0.5';});
+  el.addEventListener('mouseleave',function(){ring.style.width='32px';ring.style.height='32px';ring.style.opacity='1';});
+});
+
+// Scroll reveal
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+
+// Form
+document.getElementById('inquiry-form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var btn=document.getElementById('submit-btn');
+  btn.textContent='Sending...';btn.disabled=true;
+  emailjs.sendForm('service_w3h0bqy','gunq34s',this)
+    .then(function(){
+      document.getElementById('form-fields').style.display='none';
+      document.getElementById('form-success').style.display='block';
+    },function(error){
+      btn.textContent='Send Request';btn.disabled=false;
+      alert('Error ' + (error.status||'') + ': ' + (error.text||JSON.stringify(error)));
+    });
+});
+</script>
+</body>
+</html>
